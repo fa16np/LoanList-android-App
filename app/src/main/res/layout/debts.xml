@@ -3,11 +3,15 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:background="@drawable/round"
-    android:layout_height="match_parent"
+    android:layout_height="85dp"
     android:orientation="horizontal"
     android:layout_gravity="center_vertical"
     android:padding="10dp">
 
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
     <TextView
         android:id="@+id/Nim"
@@ -16,19 +20,38 @@
         android:text="Name"
         android:textSize="30dp"
         android:gravity="left"
-        android:textColor="@android:color/darker_gray"
-
+        android:textColor="@android:color/white"
     />
 
-    <TextView
-        android:id="@+id/amn"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:text="jk"
-        android:textSize="40dp"
-        android:gravity="right"
-        android:layout_alignParentRight="true"
-        android:textColor="@android:color/darker_gray"
+    <Button
+        android:layout_width="60dp"
+        android:layout_height="22dp"
+        android:text="remove"
+        android:textSize="10dp"
+        android:background="@drawable/roundtton"
+        android:textColor="@android:color/white"
+        android:layout_alignParentBottom="true"
+        android:onClick="deleteLoan"
+
         />
+
+
+    </RelativeLayout>
+
+
+
+
+
+       <TextView
+           android:id="@+id/amn"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="jk"
+           android:textSize="35dp"
+           android:gravity="right"
+           android:layout_alignParentRight="true"
+           android:textColor="@android:color/white"
+           />
+
 
 </RelativeLayout>

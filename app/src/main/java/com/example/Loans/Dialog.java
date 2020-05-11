@@ -11,6 +11,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDialogFragment;
 
+
 public class Dialog extends AppCompatDialogFragment {
 
     EditText name;
@@ -47,14 +48,19 @@ public class Dialog extends AppCompatDialogFragment {
         }).setPositiveButton("Ok", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                String nm = name.getText().toString();
-                double am = Double.parseDouble(amount.getText().toString());
+               try {
+                   double am = Double.parseDouble(amount.getText().toString());
+                   String nm = name.getText().toString();
 //                String de = des.getText().toString();
+                   if (!nm.equals("")) {
+                       passData.info(nm, "", Double.toString(am));
+                   }
+               }catch (NumberFormatException e){
+                   Toast.makeText(getContext(), "Empty input",Toast.LENGTH_SHORT);
+               }catch (NullPointerException e){
+                   Toast.makeText(getContext(), "Empty input",Toast.LENGTH_SHORT);
 
-                //TODO
-//                add expection jugar if string empty , ask again
-
-                passData.info(nm,"",Double.toString(am));
+               }
             }
         });
 

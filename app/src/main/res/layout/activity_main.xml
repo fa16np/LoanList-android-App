@@ -1,17 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@android:color/darker_gray"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:ndroid="http://schemas.android.com/apk/res-auto"
+    android:background="@android:color/white"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <Button
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:id="@+id/button"
         android:layout_height="wrap_content"
+        android:textSize="30dp"
+        android:background="@drawable/roundadd"
+        android:textColor="@android:color/white"
         android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
         android:onClick="addDebt"
-        android:text="ADD"/>
+        android:padding="2dp"
+        android:layout_marginBottom="5dp"
+        android:text="+"/>
 
 
     <LinearLayout
@@ -21,6 +29,9 @@
 
         <ListView
             android:id="@+id/ls"
+            android:paddingTop="10dp"
+            android:paddingLeft="2dp"
+            android:paddingRight="2dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 

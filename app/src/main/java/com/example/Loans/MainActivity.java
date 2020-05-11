@@ -6,34 +6,36 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.TextView;
 
 
-import org.json.JSONObject;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.OutputStreamWriter;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements Dialog.DataPassOn {
 
     List<Debt> items;
-//    ArrayAdapter<Debt> arrayAdt;
     ListView list;
     DebtAdapter arrayAdt;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        loadContent();
+    }
 
-        items =  new ArrayList<>();
+    public void loadContent(){
+        loadAcc();
         arrayAdt =  new DebtAdapter(this, items );
         list = findViewById(R.id.ls);
         list.setAdapter(arrayAdt);
-
     }
 
     public void addDebt(View v){
@@ -41,40 +43,50 @@ public class MainActivity extends AppCompatActivity implements Dialog.DataPassOn
         dg.show(getSupportFragmentManager(),"Sample");
     }
 
-//
-//    https://www.youtube.com/watch?v=jcliHGR3CHo
-//    https://www.youtube.com/watch?v=J7d1iseTV68&t=1426s
+
+    private void savAcc(){
+        SharedPreferences pref =  getSharedPreferences("Udhar",MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
+        Gson gson =  new Gson();
+        String json = gson.toJson(items);
+        editor.putString("udhar",json);
+        editor.apply();
+    }
 
 
-//    public void saveData(){
-//        try{
-//            File file = new File(this.getFilesDir(), "Saved");
-//
-//            FileOutputStream outSt = new FileOutputStream(file);
-//            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(outSt));
-//
-//            for (int i = 0; i <items.size() ; i++) {
-//                writer.write(String.valueOf(items.get(i)));
-//
-//            }
-//
-//
-//        } catch (Exception e){
-//
-//        }
-//    }
+    private void loadAcc(){
+        SharedPreferences pref =  getSharedPreferences("Udhar",MODE_PRIVATE);
+        Gson gson =  new Gson();
+        String json = pref.getString("udhar",null);
+        Type type = new TypeToken<ArrayList<Debt>>() {}.getType();
+        items = gson.fromJson(json,type);
 
-
-    public void saveData(){
-        SharedPreferences sPreference = getSharedPreferences("shared preference",MODE_PRIVATE);
-        SharedPreferences.Editor editor = sPreference.edit();
-
+        if ((items == null)) {
+            items = new ArrayList<Debt>();
+        }
     }
 
 
 
+    public void deleteLoan(View view){
+        View prnt = (View) view.getParent();
+        TextView loanName = (TextView) findViewById(R.id.Nim);
+        TextView loanAmnt = (TextView) findViewById(R.id.amn);
+        String loan = String.valueOf(loanName.getText());
+        String loanA = String.valueOf(loanAmnt.getText());
+        for (int i =0; i<items.size(); i++ ){
+            if(items.get(i).name.equals(loan) && items.get(i).amount.equals(loanA)){
+                items.remove(i);
+            }
+        }
+        savAcc();
+        loadContent();
+
+    }
+
     @Override
     public void info(String n, String d, String a) {
         items.add(new Debt(a,n,d));
+        savAcc();
     }
 }
