@@ -23,7 +23,6 @@ public class MainActivity extends AppCompatActivity implements Dialog.DataPassOn
     DebtAdapter arrayAdt;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,13 +68,14 @@ public class MainActivity extends AppCompatActivity implements Dialog.DataPassOn
 
 
     public void deleteLoan(View view){
-        View prnt = (View) view.getParent();
-        TextView loanName = (TextView) findViewById(R.id.Nim);
-        TextView loanAmnt = (TextView) findViewById(R.id.amn);
+        View prnt = (View) view.getParent().getParent();
+        TextView loanName = (TextView) prnt.findViewById(R.id.Nim);
+        TextView loanAmnt = (TextView) prnt.findViewById(R.id.amn);
         String loan = String.valueOf(loanName.getText());
         String loanA = String.valueOf(loanAmnt.getText());
         for (int i =0; i<items.size(); i++ ){
             if(items.get(i).name.equals(loan) && items.get(i).amount.equals(loanA)){
+                System.out.println(items.get(i).name + "   " + loan);
                 items.remove(i);
             }
         }

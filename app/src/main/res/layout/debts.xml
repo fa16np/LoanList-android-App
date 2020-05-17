@@ -26,6 +26,7 @@
     <Button
         android:layout_width="60dp"
         android:layout_height="22dp"
+        android:id="@+id/remB"
         android:text="remove"
         android:textSize="10dp"
         android:background="@drawable/roundtton"
