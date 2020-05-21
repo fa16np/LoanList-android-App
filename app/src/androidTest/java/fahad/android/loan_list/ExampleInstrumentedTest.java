@@ -1,4 +1,4 @@
-package com.example.Loans;
+package fahad.android.loan_list;
 
 import android.content.Context;
 
@@ -22,6 +22,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.example.accountts", appContext.getPackageName());
+        assertEquals("fahad.android.loan_list", appContext.getPackageName());
     }
 }

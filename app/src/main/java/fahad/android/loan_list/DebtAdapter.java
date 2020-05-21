@@ -1,4 +1,4 @@
-package com.example.Loans;
+package fahad.android.loan_list;
 
 import android.content.Context;
 import android.view.LayoutInflater;

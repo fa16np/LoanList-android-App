@@ -4,8 +4,8 @@ android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
     defaultConfig {
-        applicationId "com.example.LoanList"
-        minSdkVersion 19
+        applicationId "fahad.android.loan_list"
+        minSdkVersion 22
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"

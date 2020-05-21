@@ -1,6 +1,4 @@
-package com.example.Loans;
-
-import androidx.appcompat.app.AppCompatActivity;
+package fahad.android.loan_list;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -8,6 +6,7 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
